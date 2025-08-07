@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>ฟอร์มสั่งซื้อของที่ระลึก 30 ปี</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body
+  class="bg-gradient-to-br from-cyan-100 via-blue-200 min-h-screen flex flex-col items-center justify-center font-sans p-6">
+
+  <main
+    class="backdrop-blur-sm bg-white/80 border border-white/60 shadow-2xl rounded-2xl max-w-4xl w-full p-10 space-y-8">
+
+    <header>
+      <h1 class="text-4xl font-bold text-center text-sky-700 drop-shadow-sm">🛍️ สั่งซื้อของที่ระลึก 30 ปี</h1>
+      <p class="text-xl text-center font-bold text-gray-600 mt-1">Computer Science MJU</p>
+    </header>
+
+    <form action="submit_order.html" method="post" enctype="multipart/form-data" class="space-y-8" id="orderForm">
+
+      <!--ข้อมูลผู้สั่งซื้อ -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">👤 ข้อมูลผู้สั่งซื้อ</h2>
+        <input type="text" name="fullname" required placeholder="ชื่อ - นามสกุล"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:ring-2 focus:ring-teal-400" />
+        <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="เบอร์โทรศัพท์"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:ring-2 focus:ring-teal-400" />
+        <textarea name="address" rows="3" required placeholder="ที่อยู่สำหรับจัดส่ง"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:ring-2 focus:ring-teal-400"></textarea>
+      </div>
+
+      <!--เลือกสินค้า -->
+      <fieldset class="space-y-4 border border-gray-300 rounded-md p-6">
+        <legend class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">📦 เลือกสินค้า (หลายรายการได้)</legend>
+
+        <!-- เสื้อ -->
+        <div class="flex items-center space-x-2">
+          <input type="checkbox" id="item_shirt" name="items" value="shirt" data-price="350" />
+          <label for="item_shirt" class="flex-grow cursor-pointer select-none">เสื้อ (350 บาท)</label>
+        </div>
+
+        <!-- ตัวเลือกเสื้อ สีและขนาด -->
+        <div id="shirtOptions" class="ml-6 mt-3 space-y-3 hidden border border-sky-200 bg-sky-50 p-4 rounded-md">
+          <div class="mt-4">
+            <p class="text-gray-700 font-semibold mb-2">เลือกสีเสื้อ:</p>
+            <div class="flex gap-4">
+              <!-- สีขาว -->
+              <label>
+                <input type="radio" name="shirt_color" value="ขาว" class="peer hidden" required />
+                <img src="https://down-th.img.susercontent.com/file/sg-11134201-7rcev-lsweked2sumg2d" alt="ขาว"
+                  class="w-20 h-20 object-cover border-2 border-gray-300 rounded-lg peer-checked:border-teal-500 cursor-pointer hover:opacity-80 transition" />
+              </label>
+              <!-- สีดำ -->
+              <label>
+                <input type="radio" name="shirt_color" value="ดำ" class="peer hidden" />
+                <img
+                  src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/050f6757b78d4f7ac2e2f1e9ee6fba77f7286e48_xxl-1.jpg"
+                  alt="ดำ"
+                  class="w-20 h-20 object-cover border-2 border-gray-300 rounded-lg peer-checked:border-teal-500 cursor-pointer hover:opacity-80 transition" />
+              </label>
+
+              <!-- สีน้ำเงิน -->
+              <label>
+                <input type="radio" name="shirt_color" value="น้ำเงิน" class="peer hidden" />
+                <img src="https://cx.lnwfile.com/_/cx/_raw/8w/5o/4u.jpg" alt="น้ำเงิน"
+                  class="w-20 h-20 object-cover border-2 border-gray-300 rounded-lg peer-checked:border-teal-500 cursor-pointer hover:opacity-80 transition" />
+              </label>
+
+              <!-- สีแดง -->
+              <label>
+                <input type="radio" name="shirt_color" value="แดง" class="peer hidden" />
+                <img src="https://cx.lnwfile.com/_/cx/_raw/yg/1p/by.jpg" alt="แดง"
+                  class="w-20 h-20 object-cover border-2 border-gray-300 rounded-lg peer-checked:border-teal-500 cursor-pointer hover:opacity-80 transition" />
+              </label>
+            </div>
+          </div>
+
+          <select name="shirt_size" class="w-1/2 border rounded-md px-4 py-2 focus:ring-2 focus:ring-teal-400" required>
+            <option value="">-- เลือกขนาดเสื้อ --</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+
+        <!-- กระเป๋า -->
+        <div class="flex items-center space-x-2">
+          <input type="checkbox" id="item_bag" name="items" value="bag" data-price="250" />
+          <label for="item_bag" class="flex-grow cursor-pointer select-none">กระเป๋า (250 บาท)</label>
+        </div>
+
+        <!-- แก้ว -->
+        <div class="flex items-center space-x-2">
+          <input type="checkbox" id="item_cup" name="items" value="cup" data-price="60" />
+          <label for="item_cup" class="flex-grow cursor-pointer select-none">แก้ว (60 บาท)</label>
+        </div>
+
+        <!-- หมวก -->
+        <div class="flex items-center space-x-2">
+          <input type="checkbox" id="item_hat" name="items" value="hat" data-price="120" />
+          <label for="item_hat" class="flex-grow cursor-pointer select-none">หมวก (120 บาท)</label>
+        </div>
+
+        <!-- ร่ม -->
+        <div class="flex items-center space-x-2">
+          <input type="checkbox" id="item_umbrella" name="items" value="umbrella" data-price="80" />
+          <label for="item_umbrella" class="flex-grow cursor-pointer select-none">ร่ม (80 บาท)</label>
+        </div>
+
+      </fieldset>
+
+      <!-- ช่องกรอกข้อมูลเพิ่มเติม -->
+      <div>
+        <label for="details" class="block text-gray-700 font-semibold mb-2">รายละเอียดเพิ่มเติม</label>
+        <textarea id="details" name="details" rows="2" placeholder="เพิ่มเติม"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:ring-2 focus:ring-teal-400"></textarea>
+      </div>
+
+      <!--การชำระเงิน -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">💳 การชำระเงิน</h2>
+        <select name="payment" required
+          class="w-full border rounded-md px-4 py-2 shadow-sm bg-white focus:ring-2 focus:ring-teal-400">
+          <option>โอนผ่านบัญชีธนาคาร</option>
+          <option>PromptPay</option>
+          <option>เงินสด (สำหรับรับเอง)</option>
+        </select>
+        <input type="file" name="slip" accept="image/*" required
+          class="w-full text-gray-700 bg-white border rounded-md px-4 py-2 shadow-sm" />
+        <input type="date" name="date" required
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:ring-2 focus:ring-teal-400" />
+      </div>
+
+      <!-- วิธีรับสินค้า -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">🚚 วิธีรับสินค้า</h2>
+        <select name="delivery" required
+          class="w-full border rounded-md px-4 py-2 shadow-sm bg-white focus:ring-2 focus:ring-teal-400">
+          <option>จัดส่งทางไปรษณีย์</option>
+          <option>รับเองที่มหาวิทยาลัย</option>
+        </select>
+      </div>
+
+      <!-- รวมราคา -->
+      <div class="text-right text-xl font-bold text-teal-700">
+        ราคารวม: <span id="totalPrice">0</span> บาท
+      </div>
+
+      <!-- ปุ่มส่ง -->
+      <div class="text-center pt-6">
+        <button type="submit"
+          class="bg-teal-500 hover:bg-teal-600 text-white font-bold px-8 py-3 rounded-full shadow-lg transition duration-300">
+          ✅ ยืนยันการสั่งซื้อ
+        </button>
+      </div>
+      <!-- ป็อปอัพสั่งซื้อสำเร็จแบบสวยงาม พร้อมอนิเมชัน -->
+      <div id="popupSuccess"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-500">
+        <div
+          class="bg-white rounded-xl shadow-2xl px-10 py-8 text-center max-w-sm w-full transform scale-75 opacity-0 transition-all duration-500"
+          id="popupContent">
+          <h3 class="text-3xl font-extrabold text-green-600 mb-4 animate-bounce">🎉 สั่งซื้อสำเร็จ!</h3>
+          <p class="text-gray-700 mb-6 text-lg">ขอบคุณสำหรับการสั่งซื้อ ทีมงานจะติดต่อกลับเร็วๆ นี้</p>
+          <button onclick="closePopup()"
+            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-semibold shadow-md transition duration-300">
+            ปิด
+          </button>
+        </div>
+      </div>
+
+
+
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    const popup = document.getElementById('popupSuccess');
+    const itemShirtCheckbox = document.getElementById('item_shirt');
+    const shirtOptionsDiv = document.getElementById('shirtOptions');
+    const checkboxes = document.querySelectorAll('input[name="items"]');
+    const totalPriceSpan = document.getElementById('totalPrice');
+    const popupContent = document.getElementById('popupContent');
+
+    function updateTotal() {
+      let total = 0;
+      checkboxes.forEach(box => {
+        if (box.checked) {
+          const price = parseInt(box.dataset.price) || 0;
+          total += price;
+        }
+      });
+      totalPriceSpan.textContent = total;
+    }
+
+    itemShirtCheckbox.addEventListener('change', () => {
+      if (itemShirtCheckbox.checked) {
+        shirtOptionsDiv.classList.remove('hidden');
+        shirtOptionsDiv.querySelectorAll('select').forEach(sel => sel.required = true);
+      } else {
+        shirtOptionsDiv.classList.add('hidden');
+        shirtOptionsDiv.querySelectorAll('select').forEach(sel => {
+          sel.required = false;
+          sel.value = '';
+        });
+      }
+      updateTotal();
+    });
+
+    checkboxes.forEach(box => {
+      box.addEventListener('change', updateTotal);
+    });
+
+    // เริ่มต้นซ่อนตัวเลือกเสื้อ
+    shirtOptionsDiv.classList.add('hidden');
+
+    function openPopup() {
+      popup.classList.remove('opacity-0', 'pointer-events-none');
+      // เลื่อนหน้าไปตำแหน่ง popup
+      popup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // เลื่อนอนิเมชัน scale + opacity ให้ดูเด้ง
+      setTimeout(() => {
+        popupContent.classList.remove('opacity-0', 'scale-75');
+        popupContent.classList.add('opacity-100', 'scale-100');
+      }, 50);
+    }
+
+    function closePopup() {
+      // เริ่มอนิเมชันปิด
+      popupContent.classList.remove('opacity-100', 'scale-100');
+      popupContent.classList.add('opacity-0', 'scale-75');
+
+      // รออนิเมชันเสร็จแล้วซ่อน
+      setTimeout(() => {
+        popup.classList.add('opacity-0', 'pointer-events-none');
+      }, 400);
+    }
+
+    // ใช้กับฟอร์ม submit
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      openPopup();
+
+      setTimeout(() => {
+        closePopup();
+        form.reset();
+        shirtOptionsDiv.classList.add('hidden');
+        updateTotal();
+      }, 3000);
+    });
+
+    // ให้ปุ่มปิดเรียก closePopup ได้
+    window.closePopup = closePopup;
+  </script>
+
+
+</body>
+
+</html>
